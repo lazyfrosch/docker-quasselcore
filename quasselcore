@@ -1,0 +1,9 @@
+#!/bin/bash
+
+QUASSEL_USER=quasselcore
+QUASSEL_GROUP=quassel
+DATADIR=/var/lib/quassel
+
+exec start-stop-daemon \
+    --chuid "${QUASSEL_USER}:${QUASSEL_GROUP}" \
+    --start --exec /usr/bin/quasselcore -- --configdir=${DATADIR}

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+QUASSEL_HOME=/var/lib/quassel
+QUASSEL_USER=quasselcore
+QUASSEL_GROUP=quassel
+QUASSEL_CERT="${QUASSEL_HOME}/quasselCert.pem"
+
+echo "Setting permissions for ${QUASSEL_HOME}"
+chown -R $QUASSEL_USER "$QUASSEL_HOME"
+chmod 0700 "$QUASSEL_HOME"
+
+if [ ! -e "$CERT" ]; then
+  echo "Creating certificate for quassel at ${QUASSEL_CERT}"
+  su $QUASSEL_USER -s /bin/sh -c \
+    "openssl req -x509 -nodes -batch -days 680 -newkey rsa \
+      -keyout $QUASSEL_CERT -out $QUASSEL_CERT"
+fi
+
+exec "$@"
