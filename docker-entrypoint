@@ -9,7 +9,7 @@ echo "Setting permissions for ${QUASSEL_HOME}"
 chown -R $QUASSEL_USER "$QUASSEL_HOME"
 chmod 0700 "$QUASSEL_HOME"
 
-if [ ! -e "$CERT" ]; then
+if [ ! -e "${QUASSEL_CERT}" ]; then
   echo "Creating certificate for quassel at ${QUASSEL_CERT}"
   su $QUASSEL_USER -s /bin/sh -c \
     "openssl req -x509 -nodes -batch -days 680 -newkey rsa \
