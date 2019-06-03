@@ -1,6 +1,7 @@
-FROM lazyfrosch/debian:stretch
+FROM debian:buster
 
 RUN apt-get update \
+ && apt-get dist-upgrade -y \
  && apt-get install -y --no-install-recommends quassel-core \
  && rm -rf /var/lib/apt/lists/* \
  && rm -rf /var/lib/quassel/*  # cleanup cert
